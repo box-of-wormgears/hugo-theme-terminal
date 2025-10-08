@@ -24,12 +24,12 @@
 {{- end }}
 <!-- Custom CSS to override theme properties (/static/style.css) -->
 {{ if (fileExists "static/style.css") -}}
-  <link rel="stylesheet" href="{{ "style.css" | absURL }}">
+  <link rel="stylesheet" href="{{ "style.css" | relURL }}">
 {{- end }}
 
 <!-- Icons -->
-<link rel="shortcut icon" href="{{ "favicon.png" | absURL }}">
-<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | absURL }}">
+<link rel="shortcut icon" href="{{ "favicon.webp" | relURL }}">
+<link rel="apple-touch-icon" href="{{ "apple-touch-ico.png" | relURL }}">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary" />

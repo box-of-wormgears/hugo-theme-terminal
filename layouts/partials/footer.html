@@ -1,4 +1,5 @@
 <footer class="footer">
+
   <div class="footer__inner">
     {{ if $.Site.Copyright }}
       <div class="copyright copyright--user">
@@ -9,6 +10,9 @@
     {{ end }}
       <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
       </div>
+	  <button id="toggle-animations" style="margin-left:2em;">
+	        Shh...
+	      </button>
   </div>
 </footer>
 
@@ -18,6 +22,39 @@
 {{ $bundle := slice $menu $cp | resources.Concat "bundle.js" | resources.Minify }}
 
 <script type="text/javascript" src="{{ $bundle.RelPermalink }}"></script>
+<script>
+  function setAnimations(state) {
+    if (state === 'off') {
+      document.body.classList.add('no-animations');
+      localStorage.setItem('animations', 'off');
+    } else {
+      document.body.classList.remove('no-animations');
+      localStorage.setItem('animations', 'on');
+    }
+  }
+
+  // Restore preference on load
+  if (localStorage.getItem('animations') === 'off') {
+    document.body.classList.add('no-animations');
+  }
+  // Update button text if animation is already off
+  window.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('toggle-animations');
+    if (!btn) return;
+    btn.textContent = document.body.classList.contains('no-animations') 
+      ? "‧⁺✧(˶´⚰︎`˵)⁺‧" 
+      : "(*/□＼*)";
+    btn.onclick = function() {
+      if (document.body.classList.contains('no-animations')) {
+        setAnimations('on');
+        this.textContent = "(*/□＼*)";
+      } else {
+        setAnimations('off');
+        this.textContent = "‧⁺✧(˶´⚰︎`˵)⁺‧";
+      }
+    }
+  });
+</script>
 
 <!-- Extended footer section-->
 {{ partial "extended_footer.html" . }}

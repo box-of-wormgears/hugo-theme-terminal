@@ -1,3 +1,9 @@
+baseURL = "https://box-of-wormgears.github.io/ideas/"
+relativeURLs = true
+canonifyURLs = true
+uglyURLs = false
+
+
 [module]
   [module.hugoVersion]
     extended = true
